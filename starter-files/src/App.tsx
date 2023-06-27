@@ -3,16 +3,18 @@ import { useState, ChangeEvent} from "react"
 const App = (): JSX.Element => {
 const [term, setTerm] = useState<string>('')
 
+const [options,setOptions] = useState<[]>([])
+
 
 const getSearchOptions = (value: string) => {
-  
+
 //This is the actually fetch to the API
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${process.env.REACT_APP_API_KEY
 }`
 )
 //This shows us the location that come up as data.
 .then ((res) => res.json())
-.then((data) => console.log([data]))
+.then((data) => setOptions(data))
 }
   const onInputChange =(e: ChangeEvent<HTMLInputElement>) => {
   const value  = e.target.value.trim()
@@ -34,9 +36,15 @@ const getSearchOptions = (value: string) => {
 <p className="text-sm mt-2"> Enter below a place you want to know the weather of and select an option from the dropdown</p>
      
      
-<div className="flex mt-10 md:mt-4">
+<div className="relative mt-10 md:mt-4">
      <input type="text" value ={term} onChange={onInputChange} className="px- py-1 rounded-1-md border-2 border-white"/>
       
+      <ul className="absolute top-9 bg-white m1-1 rounded-b-md">
+    {options.map((option: {name:string }) => 
+    (<p>{option.name}</p>
+    ))}
+    </ul>
+    
       <button className="rounded-r-md border-2 border-zinc-100 hover:border-zince-500 hover:text-zinc-500 text-zince-100 px-2 py-1 cursor-pointer"> search</button>
  </div>
       </section>
