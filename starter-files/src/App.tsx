@@ -1,6 +1,6 @@
 import { useState, ChangeEvent} from "react"
 const App = (): JSX.Element => {
-const [term, setTerm] = useState('')
+const [term, setTerm] = useState<string>('')
 
 const onInputChange =(e:ChangeEvent<HTMLInputElement>) => {
   setTerm(e.target.value)
