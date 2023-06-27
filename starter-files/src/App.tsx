@@ -9,7 +9,7 @@ const App = () => {
      
      
 
-     <input type="text" value ={'k'} className="px- py-1 rounded-1-md border-2 border-white"/>
+     <input type="text" value ={'ka'} className="px- py-1 rounded-1-md border-2 border-white"/>
       </section>
     </main>
   )
