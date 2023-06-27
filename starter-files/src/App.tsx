@@ -5,9 +5,9 @@ const [term, setTerm] = useState<string>('')
 const onInputChange =(e:ChangeEvent<HTMLInputElement>) => {
   setTerm(e.target.value)
   console.log(term)
-}
-  // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
+ fetch(`http://api.openweathermap.org/geo/1.0/direct?q={term}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
+}
   return (
     <main className="flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full">
       <section className= "w-full md:max-w-[500px] p-4 flex flex-col text-center items-center justify-center md:px-10 lg:p-24 h-full lg:h-[500px] bg-white bg-opacity-20 backdrop-blur-1s drop shadow-1g text-zinc-700">
