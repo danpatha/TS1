@@ -5,15 +5,21 @@ const [term, setTerm] = useState<string>('')
 
 
 const getSearchOptions = (value: string) => {
+  
+//This is the actually fetch to the API
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${process.env.REACT_APP_API_KEY
 }`
 )
+//This shows us the location that come up as data.
+.then ((res) => res.json())
+.then((data) => console.log([data]))
 }
   const onInputChange =(e: ChangeEvent<HTMLInputElement>) => {
-  const { value } = e.target
+  const value  = e.target.value.trim()
     setTerm(value)
 
-  
+  //This makes sure they people can't type in a space to start.
+  if (value ==='') return
 
     getSearchOptions(value)
   }
