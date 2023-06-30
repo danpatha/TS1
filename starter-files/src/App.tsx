@@ -1,4 +1,5 @@
 import { useState, ChangeEvent} from "react"
+import{optionType} from './types';
 
 const App = (): JSX.Element => {
 const [term, setTerm] = useState<string>('')
@@ -26,6 +27,9 @@ const getSearchOptions = (value: string) => {
     getSearchOptions(value)
   }
 
+  const onOptionSelect = (option: optionType) => [
+    //do something
+  ]
  
   return (
     <main className="flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full">
@@ -40,8 +44,14 @@ const getSearchOptions = (value: string) => {
      <input type="text" value ={term} onChange={onInputChange} className="px- py-1 rounded-1-md border-2 border-white"/>
       
       <ul className="absolute top-9 bg-white m1-1 rounded-b-md">
-    {options.map((option: {name:string }) => 
-    (<p>{option.name}</p>
+    {options.map((option: optionType, index : number) =>  (
+     <li key={option.name + '-' + index}>
+      <button className="text-left text-sm w-full hover:bg-zinc-700 hover:text-white px-2 py-1 cursor-pointer"
+         onClick={() => onOptionSelect(option)}>
+          {option.name}
+       </button>
+
+     </li>
     ))}
     </ul>
     
