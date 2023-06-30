@@ -27,9 +27,14 @@ const getSearchOptions = (value: string) => {
     getSearchOptions(value)
   }
 
-  const onOptionSelect = (option: optionType) => [
-    //do something
-  ]
+  const onOptionSelect = (option: optionType) => {
+    console.log(option.name)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${option.lat}&lon=${option.lon}&units=standard&appid=${process.env.REACT_APP_API_KEY}`
+  )
+  .then((res) => res.json())
+  .then(data=> console.log({data}))
+  
+}
  
   return (
     <main className="flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full">
