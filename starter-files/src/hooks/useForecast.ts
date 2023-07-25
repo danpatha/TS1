@@ -1,11 +1,12 @@
 import { useState,ChangeEvent } from "react"
-import { optionType } from "../types"
+import { displayPartsToString } from "typescript"
+import { optionType, forecastType } from "../types"
 
 const useForecast = () => {
 
 const [term, setTerm] = useState<string>('')
 const [options,setOptions] = useState<[]>([])
-const [forecast,setForecast] = useState<null>(null)
+const [forecast,setForecast] = useState<forecastType | null>(null)
 
 
 const getSearchOptions = (value: string) => {
@@ -31,10 +32,17 @@ const getSearchOptions = (value: string) => {
 
   const onOptionSelect = (option: optionType) => {
     console.log(option.name)
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${option.lat}&lon=${option.lon}&units=standard&appid=${process.env.REACT_APP_API_KEY}`
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${option.lat}&lon=${option.lon}&units=standard&appid=${process.env.REACT_APP_API_KEY}`
   )
   .then((res) => res.json())
-  .then(data=> setForecast(data))
+  .then(data=> {
+
+const forecastData = {
+    ...data.city,
+    list:data.list.slice(0,16),
+}
+setForecast(forecastData)
+})
   
 }
 
