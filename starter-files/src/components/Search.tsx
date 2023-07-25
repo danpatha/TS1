@@ -1,16 +1,17 @@
 
-import {ChangeEvent} from 'react'
-import {optionType} from './../types'
+import{ChangeEvent} from 'react'
+import { optionType } from '../types'
 
-type Props = {
-  term:string,
-  options: [],
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onOptionSelect: (option:optionType) => void
-  onSubmit: () => void
+type Props={
+    term:string
+    options: []
+    onInputChange:(e: ChangeEvent<HTMLInputElement>) => void
+    onOptionSelect: (option: optionType) => void
+    onSubmit: () => void
+    
 }
 
-const Search = ({term, options, onInputChange,onOptionSelect, onSubmit}:Props): JSX.Element => {
+const Search = ({term, options, onInputChange, onOptionSelect,onSubmit,}:Props): JSX.Element => {
 
  
   return (
@@ -28,7 +29,7 @@ const Search = ({term, options, onInputChange,onOptionSelect, onSubmit}:Props): 
       <ul className="absolute top-9 bg-white m1-1 rounded-b-md">
     {options.map((option: optionType, index : number) =>  (
      <li key={option.name + '-' + index}>
-      <button className="text-left text-sm w-full hover:bg-zinc-700 hover:text-white px-2 py-1 cursor-pointer" 
+      <button className="text-left text-sm w-full hover:bg-zinc-700 hover:text-white px-2 py-1 cursor-pointer"
          onClick={() => onOptionSelect(option)}>
           {option.name}
        </button>
@@ -37,7 +38,7 @@ const Search = ({term, options, onInputChange,onOptionSelect, onSubmit}:Props): 
     ))}
     </ul>
     
-      <button className="rounded-r-md border-2 border-zinc-100 hover:border-zince-500 hover:text-zinc-500 text-zince-100 px-2 py-1 cursor-pointer" onClick={onSubmit}> search</button>
+       {/* <button className="rounded-r-md border-2 border-zinc-100 hover:border-zince-500 hover:text-zinc-500 text-zince-100 px-2 py-1 cursor-pointer"onClick={onSubmit}> search</button>  */}
  </div>
       </section>
 
