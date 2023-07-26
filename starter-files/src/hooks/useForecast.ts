@@ -22,7 +22,7 @@ const getSearchOptions = (value: string) => {
 }
   const onInputChange =(e: ChangeEvent<HTMLInputElement>) => {
   const value  = e.target.value.trim()
-    setTerm(value)
+    setTerm(e.target.value)
 
   //This makes sure they people can't type in a space to start.
   if (value ==='') return
@@ -32,7 +32,7 @@ const getSearchOptions = (value: string) => {
 
   const onOptionSelect = (option: optionType) => {
     console.log(option.name)
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${option.lat}&lon=${option.lon}&units=standard&appid=${process.env.REACT_APP_API_KEY}`
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${option.lat}&lon=${option.lon}&units=imperial&lang=en&appid=${process.env.REACT_APP_API_KEY}`
   )
   .then((res) => res.json())
   .then(data=> {
