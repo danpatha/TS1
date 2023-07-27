@@ -8,8 +8,8 @@ import Pop from "./Icons/Pop"
 type Props = {
     icon: 'wind' | 'feels' | 'humidity' | 'visibility' | 'pressure' | 'pop'
     title: string
-    info:string | JSX.Element
-    description: string
+    // info:string | JSX.Element
+    // description: string
 }
 
 const icons = {
@@ -22,15 +22,14 @@ pop: Pop,
 }
 
 
-const Tile = ({icon, title, info, description}: Props): JSX.Element=> {
-    
+const Tile = ({icon, title, }: Props): JSX.Element=> {
+    // info, description
+    const Icon =icons[icon]
 
     return(
-
-        <div>
-
-            <p>Tile</p>
-        </div>
+        <article className='w-[140px] h-[130px] text-zinc-700 font-bold flex flex-col justify-between bg-white/20 backdrop-blur-1g rounded drop-shadow-lg p-2 mb-5'>
+            <Icon/>
+        </article>
     )
 }
 
