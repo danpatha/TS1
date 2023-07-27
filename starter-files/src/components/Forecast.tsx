@@ -1,3 +1,4 @@
+import { isTemplateExpression } from 'typescript'
 import { forecastType } from '../types'
 
 type Props ={
@@ -37,6 +38,27 @@ const Forecast = ({data}: Props): JSX.Element => {
             L:<Degree temp={Math.floor(today.main.temp_min)}/>
 
            </p>
+           </section>
+
+
+           <section className='flex overflow-x-scroll mt-2 pb-2 mb-5'>
+            {data.list.map((item, i) => (
+               <div className='inline-block text-center w-[50px] flex-shrink-0' key={i}>
+            <p className='text-sm'> {i === 0 ? 'Now' : new Date(item.dt * 1000).getHours()}</p>
+            <img alt={`weather-icon-${item.weather[0].description}`} src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}/>
+            <p className="text-sm font-bold">
+            <Degree temp={Math.round(item.main.temp)}/>
+            </p>
+            </div> 
+            ))}
+           </section>
+
+
+           <section>
+            <div className='w-[140px] text-xs font-bold flex flex-col items-center big-white/20 backdrop-blur-1s rounded drop-shadow-lg py-4 mb-5'>
+
+            </div>
+
            </section>
            </div>
         </div>
