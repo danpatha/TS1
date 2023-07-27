@@ -1,4 +1,5 @@
 import { isTemplateExpression } from 'typescript'
+import { getSunTime } from '../helpers'
 import { forecastType } from '../types'
 import Sunrise from './Icons/Sunrise'
 import Sunset from './Icons/Sunset'
@@ -57,11 +58,11 @@ const Forecast = ({data}: Props): JSX.Element => {
 
            <section className='flex justify-between text-zinc-700'>
             <div className='w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-1g rounded drop-shadow-lg py-4 mb-5'>
-        <Sunrise />
+        <Sunrise /> <span>{getSunTime(data.sunrise)}</span>
             </div>
 
             <div className='w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-1g rounded drop-shadow-lg py-4 mb-5'>
-            <Sunset />
+            <Sunset /><span>{getSunTime(data.sunset)}</span>
             </div>
 
            </section>
