@@ -1,5 +1,5 @@
 import { isTemplateExpression } from 'typescript'
-import { getSunTime } from '../helpers'
+import { getSunTime, getWindDirection } from '../helpers'
 import { forecastType } from '../types'
 import Sunrise from './Icons/Sunrise'
 import Sunset from './Icons/Sunset'
@@ -68,7 +68,8 @@ const Forecast = ({data}: Props): JSX.Element => {
 
 
             {/* Wind */}
-            <Tile icon="wind" title="wind" />
+            <Tile icon="wind" title="wind" info={`${Math.round(today.wind.speed)}mph`}
+            description={`${getWindDirection(Math.round(today.wind.deg))},gusts ${today.wind.gust.toFixed(1)} mph`}/>
             {/* feels like */}
 
             {/* humidity */}
