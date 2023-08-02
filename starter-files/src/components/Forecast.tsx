@@ -1,5 +1,5 @@
 import { isTemplateExpression } from 'typescript'
-import { getSunTime, getWindDirection } from '../helpers'
+import { getSunTime, getWindDirection, getHumidityValue,getPop, getVisibilityValue } from '../helpers'
 import { forecastType } from '../types'
 import Sunrise from './Icons/Sunrise'
 import Sunset from './Icons/Sunset'
@@ -69,16 +69,36 @@ const Forecast = ({data}: Props): JSX.Element => {
 
             {/* Wind */}
             <Tile icon="wind" title="wind" info={`${Math.round(today.wind.speed)}mph`}
-            description={`${getWindDirection(Math.round(today.wind.deg))},gusts ${today.wind.gust.toFixed(1)} mph`}/>
+            description={`${getWindDirection(Math.round(today.wind.deg))}, with gusts up to ${today.wind.gust.toFixed(1)} mph`}/>
+            
             {/* feels like */}
+            <Tile icon= "feels" title="Feels Like" info={<Degree temp={Math.round(today.main.feels_like)}/>}
+             description={`Feels ${
+              Math.round(today.main.feels_like) < Math.round(today.main.temp)
+              ? 'colder'
+              : 'warmer'
+            }`}
+            /> 
 
             {/* humidity */}
+            <Tile icon="humidity" title='Humidity' info={`${today.main.humidity} %`} 
+            description={getHumidityValue(today.main.humidity)}
+            />
 
             {/* pop */}
+            <Tile icon="pop" title='Precipitation' info={`${Math.round(today.pop * 1000)} %`} 
+            description={`${getPop(today.pop)}, clouds at ${today.clouds.all}%`}
+            />
 
             {/* pressure */}
+            <Tile icon="pressure" title='Pressure' info={`${today.main.pressure} hPa`} 
+            description={`${Math.round(today.main.pressure) < 1013 ? 'Lower' : 'Higher'} than standard`} 
+            />
 
             {/* visibility */}
+            <Tile icon="visibility" title='Visibility' info={`${(today.visibility / 1000).toFixed()} km`} 
+             description={getVisibilityValue(today.visibility)}
+            />
 
             
 
